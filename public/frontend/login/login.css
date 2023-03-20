@@ -1,0 +1,42 @@
+*{ padding: 0; margin: 0; font-family: arial; }
+a:focus-visible, button:focus-visible{ outline: none !important; }
+.inner-pages{
+    min-height: 100vh;
+    min-width: 100vh;
+    background-size: 100%;
+    background: url(images/background.svg) no-repeat fixed bottom;
+}
+.custom-form{ width: 500px; margin: 0px auto; padding-top: 150px; padding-bottom: 100px; position: relative;}
+.custom-form img{ height: 130px;}
+.custom-form .img{ text-align: center; margin-bottom: 25px; }
+.form-group{ display: flex; flex-direction: column; margin-bottom: 20px; position: relative; }
+.form-group label.error{ position: absolute; top: 10px; right: 15px; color: red; font-size: .9rem; }
+.form-group input.error:focus-visible{ outline-color: red !important }
+.form-group input.error{ border: 1px solid red !important }
+.lost_password{ text-align: right; }
+.form-group label{ margin-bottom: 5px; }
+.form-group input{ padding: 15px; border-radius: 20px; background: #e6f1fd; border: none; font-size: 1rem; width: 100%; }
+.custom-form button[type=submit]{ padding: 15px 60px;   border-radius: 50px; background: #0a5597; border: none; color: #fff; margin: 30px; font-size: 1.5rem; }
+.custom-form .submit{ text-align: center; }
+input:focus-visible{ outline-color: #f3b37b !important }
+.mt-4{ text-align: center; }
+.colored{color: red;}
+.signup .custom-form{ padding-top: 50px;  }
+.capchar{ display: flex;align-items: flex-end; justify-content: space-between; }
+.custom-form input[type=button]{ 
+    background: #f3b37b52;margin-right: 20px;
+    color: #f5831f; border: 1px solid #f3b37b52;
+    padding: 10px 20px;margin-bottom: 5px; font-size: .8rem;
+    border-radius: 20px; }
+.custom-form input[type=button]:hover{ border: 1px solid #f5831f; }
+#alert{ margin: 15px 0px; font-size: .9rem; }
+.capchar .form-group label.error{ top: -20px; }
+.hidden{ display: none; }
+.public{ display: block; }
+.close a{ background: #cfcfcfcf; padding: 3px 15px; border-radius: 100px; color: #0a5597b3; position: absolute; top: 20px; right: 0; font-size: 2rem; }
+.close a:hover{ text-decoration: none; background: #cfcfcf; color: #0a5597; }
+
+@media (max-width: 575px){
+    .inner-pages{ min-width: 100%; }
+    .custom-form{ width: 90%; }
+}
