@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class CategoryTranslation extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $fillable = ['title', 'category_id', 'locale', 'description'];
+    public $timestamps = true;
+    protected $fillable = [
+    	'name',
+    	'parent',
+    	'content',
+    	'category_id',
+    	'locale',
+    	'title',
+    	'description',
+    ];
+
+    public function Category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+    public function PostTranslation()
+    {
+        return $this->hasMany('App\Models\PostTranslation','category_tras_id','id');
+    }
 }

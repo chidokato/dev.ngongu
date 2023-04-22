@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -17,7 +19,7 @@ class LoginController extends Controller
         // $locale = Session::get('locale');
         // $category = CategoryTranslation::where('locale', $locale)->orderBy('category_id', 'DESC')->get();
         // return view('category.index', compact('category'));
-        return view('admin.user.index');
+        return view('admin.login.index');
     }
 
     /**
@@ -38,7 +40,23 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'email' => 'required|email:filter',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt([
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+                'permission' => '1'
+            ], $request->input('remember'))) {
+
+            return redirect()->route('admin');
+            // return redirect('admin/main');
+        }
+
+        Session::flash('error', 'Email hoặc Password không đúng');
+        return redirect()->back();
     }
 
     /**
@@ -83,6 +101,12 @@ class LoginController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // echo "ok";
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

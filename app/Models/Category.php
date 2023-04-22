@@ -12,7 +12,25 @@ class Category extends Model
 {
 	use Translatable;
     use HasFactory;
-    public $timestamps = false;
-    public $translatedAttributes = ['title', 'description'];
-    protected $fillable = ['status'];
+    public $timestamps = true;
+    public $translatedAttributes = [
+    	'name',
+    	'parent',
+    	'content',
+    	'category_id',
+    	'locale',
+    	'title',
+    	'description',
+    ];
+    protected $fillable = [
+    	'status',
+    	'view',
+        'icon',
+    	'sort_by',
+    ];
+
+    public function CategoryTranslation()
+    {
+        return $this->hasMany(CategoryTranslation::class, 'category_id', 'id');
+    }
 }

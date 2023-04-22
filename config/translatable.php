@@ -17,7 +17,8 @@ return [
             'MX', // mexican spanish
             'CO', // colombian spanish
         ],
-        'vi'
+        'vi',
+        'cn'
     ],
 
     /*

@@ -57,7 +57,7 @@ label {
 .alert{
     position: fixed;
     z-index: 99;
-    top: 70px;
+    bottom: 70px;
     right: 25px;
     margin-bottom: 0px !important;
     background-color: #36b9cc8c;
@@ -283,14 +283,12 @@ label {color: #46515F;}
     color: #0088FF;
     border-radius: 5px; padding: 1px 5px;
 }
-.add_to_me input{
-    border-radius: 5px 0px 0px 5px;
-}
+
 .add_to_me button:hover{
     background: #f0f0f0;
 }
 .add_to_me button{
-    width: 10%; border-radius: 0px 5px 5px 0px;
+    width: 10%;
 }
 .button-none{
     background: none; border: none;
@@ -467,3 +465,6 @@ label {color: #46515F;}
 .list_cat li{ list-style: none; }
 .list_cat .checkmark {top: 5px;}
 .list_cat label{ padding-left: 20px; font-size: 1.1rem; margin-bottom: 10px; }
+
+
+.button_none{ border: none; background: none }

@@ -1,51 +1,57 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
-    <link rel="stylesheet" href="frontend/login/bootstrap.min.css">
-    <link rel="stylesheet" href="frontend/login/login.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
+@extends('admin.layout.main')
 
-    <section class="inner-pages">
-        <div class="custom-form">
-            <div class="close"><a href="{{asset('')}}"><i class="fa fa-times"></i></a></div>
-            <div class="img"> <a href="{{asset('')}}"><img src="data/themes/"></a> </div>
-            <form id="validateForm" action="login" method="post" name="registerform">
-                <input type="hidden" name="_token" value="{{csrf_token()}}" />
-                <div class="form-group">
-                    <label>Địa chỉ email <span class="colored">*</span></label>
-                    <input name="email" type="text" placeholder="Nhập địa chỉ email">
+@section('content')
+@include('admin.layout.header')
+@include('admin.alert')
+<div class="d-sm-flex align-items-center justify-content-between mb-3 flex">
+    <h2 class="h3 mb-0 text-gray-800 line-1 size-1-3-rem">{{__('lang.category')}}</h2>
+    <a class="add-iteam" href="{{route('users.create')}}"><button class="btn-success form-control" type="button"><i class="fa fa-plus" aria-hidden="true"></i> {{__('lang.add')}}</button></a>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header d-flex flex-row align-items-center justify-content-between">
+                <ul class="nav nav-pills">
+                    <li><a data-toggle="tab" class="nav-link active" href="#tab1">{{__('lang.all')}}</a></li>
+                    <!-- <li><a data-toggle="tab" class="nav-link " href="#tab2">Hiển thị</a></li> -->
+                    <!-- <li><a data-toggle="tab" class="nav-link" href="#tab3">Ẩn</a></li> -->
+                </ul>
+            </div>
+            <div class="tab-content overflow">
+                <div class="tab-pane active" id="tab2">
+                    @if(count($users) > 0)
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $val)
+                            <tr>
+                                <td>{{$val->id}}</td>
+                                <td><a href="{{route('users.edit',[$val->id])}}">{{$val->name}}</a></td>
+                                <td>{{$val->created_at}}</td>
+                                <td>
+                                    <a href="{{route('users.edit',[$val->id])}}" class="mr-2"><i class="fas fa-edit" aria-hidden="true"></i></a>
+                                    <!-- <form action="{{route('category.destroy', [$val->id])}}" method="POST">
+                                      @method('DELETE')
+                                      @csrf
+                                      <button onclick="return confirm('xác nhận')">Delete</button>
+                                    </form> -->
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @endif
                 </div>
-                <div class="form-group">
-                    <label>Mật khẩu <span class="colored">*</span></label>
-                    <input name="password" type="password" placeholder="Nhập mật khẩu">
-                </div>
-                <div class="lost_password tabs-menu">
-                    <a href="resetpassword">Lấy lại mật khẩu?</a>
-                </div>
-                <div id="alert"></div>
-                @if(session('Alerts')) <div id="hidden" class="colored"> {{session('Alerts')}} ! </div> @endif
-                @if(session('Success')) <div id="hidden"> {{session('Success')}} ! </div> @endif
-                @if(count($errors) > 0)
-                    @foreach($errors->all() as $err)
-                    <div class="colored">{{$err}}</div>
-                    @endforeach
-                @endif
-                <div class="submit"><button type="submit" class="log-submit-btn"><span>Đăng nhập</span></button></div>
-            </form>
-            <div class="clearfix"></div>
-            <div class="mt-4">
-                Bạn chưa có tài khoản? <a href="signup">Đăng ký ngay</a>
             </div>
         </div>
-    </section>
-
-    <script src="frontend/js/jquery-3.5.1.min.js"></script>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="admin_asset/js/validate.js"></script>
-</body>
-</html>
+    </div>
+</div>
+@endsection
